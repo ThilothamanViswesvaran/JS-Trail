@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+    <title>Student Form</title>
+    <link rel="stylesheet" href="task1.js">
+    <link rel="stylesheet" href="task1.css">
+</head>
+<body>
+    <div>
+        <table id="entry" border="1">
+            <tr>
+              <th><span>Name</span></th>
+              <td><input id="input-name" type="text"></td>
+            </tr>
+            <tr> 
+              <th><span>Age</span></th>
+              <td><input id="input-age" type="number"></td>
+           </tr>
+           <tr> 
+              <th><span>Gender</span></th>
+              <td><input id="input-male" type="radio" name="gender" value="male">Male
+               <input id="input-female" type="radio" name="gender" value="female">Female</td>
+           </tr>
+           <tr> 
+               <th><span>Course</span></th>
+               <td><select name="course" id="course">
+                   <option value="java">Java</option>
+                   <option value="python">Python</option>
+                   <option value="js">Java Script</option>
+                   <option value="htlm">HTML</option>
+                   <option value="css">CSS</option>
+               </select></td>
+            </tr>
+            <tr> 
+               <th><span>E-mail</span></th>
+               <td><input id="input-email" type="email"></td>
+            </tr>
+            <tr id="save">
+                <td colspan="2"><button id="save-btn" >Save</button></td>
+            </tr>
+          </table>
+    </div>
+    <br>
+    <div class="entry-saved">
+        <table border="1" id="saved-data">
+            <tr>
+              <th><span>NAME</span></th>
+              <th><span>AGE</span></th>
+              <th><span>COURSE</span></th>
+              <th><span>EMAIL</span></th>
+              <th><span>ACTION</span></th>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    function save() {
+        var name = document.getElementById("input-name").value;
+        var age = document.getElementById("input-age").value;
+        var gender = document.querySelector('input[name="gender"]:checked');
+        var course = document.getElementById("course").value;
+        var email = document.getElementById("input-email").value;
+
+        if (!name || !age || !gender || !course || !email) {
+            alert("Please fill all fields.");
+            return;
+        }
+
+        var table = document.getElementById("saved-data");
+        var newRow = table.insertRow(-1);
+
+        newRow.insertCell(0).innerHTML = name;
+        newRow.insertCell(1).innerHTML = age;
+        newRow.insertCell(2).innerHTML = course; 
+        newRow.insertCell(3).innerHTML = email;
+
+    
+        var deleteCell = newRow.insertCell(4);
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+
+        deleteButton.style.backgroundColor = "red";  
+        deleteButton.style.color = "white";  
+        deleteButton.style.border = "none";
+        deleteButton.style.padding = "5px 10px";
+        deleteButton.style.cursor = "pointer";
+
+        deleteButton.onclick = function () {
+            var row = this.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        };
+        deleteCell.appendChild(deleteButton);
+
+       
+        document.getElementById("input-name").value = "";
+        document.getElementById("input-age").value = "";
+        document.querySelector('input[name="gender"]:checked').checked = false;
+        document.getElementById("course").value = "java";
+        document.getElementById("input-email").value = "";
+    }
+
+    document.getElementById("save-btn").addEventListener("click", save);
+});
+
+    </script>
+</body>

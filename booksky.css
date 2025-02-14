@@ -1,0 +1,114 @@
+.overlay{
+    background-color: black;
+    width: 100%;   
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.8;
+    display: none;
+    z-index: 1;
+}
+
+.popupbox{
+    background-color: #fe6568;
+    color: black;
+    width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 2;
+}
+
+.header{
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #fe6568;
+    margin: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.add-1{
+    background-color: transparent;
+    margin: 0%;
+    width: 90px;
+    position: absolute;
+    left: 90%;
+    top: 80%;
+    cursor: pointer;
+    
+}
+
+
+.book-title, .book-author, .desc{
+    border: none;
+    background-color: #fe6568;
+    color: black;
+    font-size: 20px;
+}
+
+.addbook{
+    border: none;
+    padding: 20px;
+    background-color: #fe6568;
+}
+
+.addbook input::placeholder{
+    color: black;
+    border: none;
+}
+
+.book-list-container {
+    
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px; 
+    margin: 20px auto;
+    justify-content: flex-start; 
+}
+
+.book-container {
+    margin-top: 50px ;
+    width: 250px; 
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+}
+
+#paragraph{
+    color: white;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #fe6568;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #000000;
+}   
+
+.add-1 {
+    width: 100px;
+    cursor: pointer;
+}
+
+input {
+    font-size: 20px;
+    width: 90%;
+    padding: 10px;
+    border: transparent;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fe6568;
+}
