@@ -56,53 +56,114 @@
 // console.log(`Class Topper: ${topperName} with Total Marks: ${highestTotal}`);
 
 
+// let count;
+// do {
+//     count = parseInt(prompt("Enter the number of students:"));
+// } while (isNaN(count) || count <= 0);
+
+// let topperName = "";
+// let highestTotal = 0;
+// let students = [];
+
+// for (let i = 0; i < count; i++) {
+//     let studentName = prompt(`Enter name of student ${i + 1}:`);
+//     let total = 0;
+//     let highestMarks = 0;
+
+//     let ["englishMark", "mathsMark", "tamilMark", "socialMark", "economicsMark"];
+//     do {
+//         englishMark = parseInt(prompt(`Enter mark for English:`));
+//     } while (isNaN(englishMark) || englishMark < 0);
+
+//     do {
+//         mathsMark = parseInt(prompt(`Enter mark for Maths:`));
+//     } while (isNaN(mathsMark) || mathsMark < 0);
+
+//     do {
+//         tamilMark = parseInt(prompt(`Enter mark for Tamil:`));
+//     } while (isNaN(tamilMark) || tamilMark < 0);
+
+//     do {
+//         socialMark = parseInt(prompt(`Enter mark for Social:`));
+//     } while (isNaN(socialMark) || socialMark < 0);
+
+//     do {
+//         economicsMark = parseInt(prompt(`Enter mark for Economics:`));
+//     } while (isNaN(economicsMark) || economicsMark < 0);
+
+    
+//     total = englishMark + mathsMark + tamilMark + socialMark + economicsMark;
+
+    
+//     highestMarks = Math.max(englishMark, mathsMark, tamilMark, socialMark, economicsMark);
+
+//     console.log(`${studentName} Total Marks: ${total}`);
+//     console.log(`${studentName}'s highest marks: ${highestMarks}`);
+
+//     if (total > highestTotal) {
+//         highestTotal = total;
+//         topperName = studentName;
+//     }
+// }
+
+// console.log(`Class Topper: ${topperName} with Total Marks: ${highestTotal}`);
+
 let count;
 do {
     count = parseInt(prompt("Enter the number of students:"));
 } while (isNaN(count) || count <= 0);
 
-let topperName = "";
-let highestTotal = 0;
+let students = [];
 
 for (let i = 0; i < count; i++) {
-    let studentName = prompt(`Enter name of student ${i + 1}:`);
-    let total = 0;
-    let highestMarks = 0;
+    let student = {
+        name: prompt(`Enter name of student ${i + 1}:`),
+        marks: {}
+    };
 
-    let englishMark, mathsMark, tamilMark, socialMark, economicsMark;
-    do {
-        englishMark = parseInt(prompt(`Enter mark for English:`));
-    } while (isNaN(englishMark) || englishMark < 0);
+    let subjects = ["English", "Maths", "Tamil", "Social", "Economics"];
 
-    do {
-        mathsMark = parseInt(prompt(`Enter mark for Maths:`));
-    } while (isNaN(mathsMark) || mathsMark < 0);
-
-    do {
-        tamilMark = parseInt(prompt(`Enter mark for Tamil:`));
-    } while (isNaN(tamilMark) || tamilMark < 0);
-
-    do {
-        socialMark = parseInt(prompt(`Enter mark for Social:`));
-    } while (isNaN(socialMark) || socialMark < 0);
-
-    do {
-        economicsMark = parseInt(prompt(`Enter mark for Economics:`));
-    } while (isNaN(economicsMark) || economicsMark < 0);
-
+    // function getValidMark(subject) {
+    //     let mark;
+    //     do {
+    //         mark = parseInt(prompt(`Enter mark for ${subject}:`));
+    //     } while (isNaN(mark) || mark < 0);
+    //     return mark;
+    // }
     
-    total = englishMark + mathsMark + tamilMark + socialMark + economicsMark;
-
+    // subjects.forEach(subject => {
+    //     student.marks[subject] = getValidMark(subject);
+    // });
     
-    highestMarks = Math.max(englishMark, mathsMark, tamilMark, socialMark, economicsMark);
+    subjects.forEach(subject => {
+        let mark;
+        do {
+            mark = parseInt(prompt(`Enter mark for ${subject}:`));
+        } while (isNaN(mark) || mark < 0);
+        student.marks[subject] = mark;
+    });
 
-    console.log(`${studentName} Total Marks: ${total}`);
-    console.log(`${studentName}'s highest marks: ${highestMarks}`);
+    student.totalMarks = Object.values(student.marks).reduce((acc, mark) => acc + mark, 0);
 
-    if (total > highestTotal) {
-        highestTotal = total;
-        topperName = studentName;
+    let highestSubject = subjects[0];
+    let highestMarks = student.marks[highestSubject];
+
+    for (let subject of subjects) {
+        if (student.marks[subject] > highestMarks) {
+            highestMarks = student.marks[subject];
+            highestSubject = subject;
+        }
     }
+
+    student.highestMarks = highestMarks;
+    student.highestSubject = highestSubject;
+
+    console.log(`${student.name} Total Marks: ${student.totalMarks}`);
+    console.log(`${student.name}'s highest marks: ${student.highestMarks} in ${student.highestSubject}`);
+
+    students.push(student);
 }
 
-console.log(`Class Topper: ${topperName} with Total Marks: ${highestTotal}`);
+let topper = students.reduce((topper, student) => student.totalMarks > topper.totalMarks ? student : topper, students[0]);
+
+console.log(`Class Topper: ${topper.name} with Total Marks: ${topper.totalMarks}`);
